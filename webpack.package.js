@@ -16,7 +16,15 @@ const packageConfig = Object.assign(defaultConfig, {
         interface: path.resolve(__dirname, "package", "interface")
     },
 
-    plugins: []
+    plugins: [],
+
+    externals: {
+        "@knownout/lib": {
+            commonjs: "@knownout/lib",
+            commonjs2: "@knownout/lib",
+            amd: "@knownout/lib"
+        }
+    }
 });
 
 packageConfig.module.rules[1].use.options.configFile = "tsconfig.package.json";

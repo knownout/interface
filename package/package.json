@@ -25,5 +25,8 @@
     "bugs": {
         "url": "https://github.com/re-knownout/interface/issues"
     },
-    "homepage": "https://github.com/re-knownout/interface#readme"
+    "homepage": "https://github.com/re-knownout/interface#readme",
+    "dependencies": {
+        "@knownout/lib": "^0.0.5"
+    }
 }

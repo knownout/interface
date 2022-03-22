@@ -6,6 +6,6 @@
 
 import { classNames } from "@knownout/lib";
 
-export default function InterfaceModule () {
-    console.log("Inside module", classNames("hello", "world"));
+export default function kwtClassNames (...entries: any[]) {
+    return classNames(entries);
 }
