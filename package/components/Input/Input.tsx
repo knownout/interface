@@ -14,18 +14,15 @@ export default memo(forwardRef((props: TInputProps, ref: React.ForwardedRef<T>) 
 
     // Separate native props from custom props
     const {
-        icon, filter, placeholder, children, disabled, className, disableOnLoading, defaultValue, type,
+        icon, filter, placeholder, children, disabled, className, defaultValue, type,
         spellCheck, autoComplete,
         onInput, onFocusChange, onFocus, onBlur, onKeyPress, onKeyDown, onKeyUp, onReturn,
         onChange,
         ...nativeProps
     } = props;
 
-    /**
-     * Focus change event handler, fires with the onFocus
-     * and onBlur native events.
-     * @param event React FocusEvent.
-     */
+    // Focus change event handler, fires with the onFocus
+    // and onBlur native events.
     const onComponentFocusChange = useCallback((event: React.FocusEvent<T>) => {
         const target = event.target as T;
 
@@ -36,10 +33,9 @@ export default memo(forwardRef((props: TInputProps, ref: React.ForwardedRef<T>) 
         else onBlur && onBlur(target, event);
     }, [ onFocusChange ]);
 
-    /**
-     * Component value input (or paste) event handler.
-     * @param event React FormEvent.
-     */
+
+    // Component value input (or paste) event handler.
+    // @param event React FormEvent.
     const onComponentInput = useCallback(
         (event: React.FormEvent<T> | React.ChangeEvent<T>) => {
             const target = event.target as T;
@@ -58,11 +54,9 @@ export default memo(forwardRef((props: TInputProps, ref: React.ForwardedRef<T>) 
             setValue(target.value);
         }, [ onInput, filter ]);
 
-    /**
-     * onKeyPress native event handler, also fires onReturn custom event
-     * when Enter (Return) key pressed.
-     * @param event React KeyboardEvent.
-     */
+    // onKeyPress native event handler, also fires onReturn custom event
+    // when Enter (Return) key pressed.
+    // @param event React KeyboardEvent.
     const onComponentKeyEvent = useCallback((event: React.KeyboardEvent<T>) => {
         const target = event.target as T,
             args = [ event.key, target, event ] as [ string, T, React.KeyboardEvent<T> ];
@@ -100,10 +94,6 @@ export default memo(forwardRef((props: TInputProps, ref: React.ForwardedRef<T>) 
                    defaultValue={ children || defaultValue }
                    ref={ ref }
             />
-
-            { autoComplete && <div className="autocomplete-holder">
-                { autoComplete.map(item => <span key={ item } children={ item } />) }
-            </div> }
         </div>
     </div>;
 }));

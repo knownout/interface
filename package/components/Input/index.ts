@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2022 Alexandr <re-knownout> knownout@hotmail.com
+ * Licensed under the GNU Affero General Public License v3.0 License (AGPL-3.0)
+ * https://github.com/re-knownout/lib
+ */
+
 import React from "react";
 
 export { default } from "./Input";
@@ -10,7 +16,7 @@ export type InputMask = [ RegExp, string | ((substring: string, ...args: any[]) 
 /**
  * Custom props for the Input component
  */
-interface IInputProps<T = HTMLInputElement>
+export interface IInputProps<T = HTMLInputElement>
 {
     // Inline render icon to the side of the Input component
     icon?: JSX.Element;
@@ -20,16 +26,12 @@ interface IInputProps<T = HTMLInputElement>
 
     placeholder?: any;
 
-    // Default value for native Input element (cannot be used dynamically)
+    // Default value for native Input element (cannot be changed dynamically)
     children?: string;
 
     disabled?: boolean;
 
-    disableOnLoading?: boolean;
-
     type?: "text" | "email" | "tel" | "password";
-
-    autoComplete?: string[];
 
     // Add-on over native onInput event
     onInput? (value: string, target: T, event: React.FormEvent<T>): void;
