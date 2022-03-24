@@ -15,7 +15,10 @@ module.exports = {
     entry: path.resolve(__dirname, "sandbox", "index"),
 
     resolve: {
-        extensions: [ ".tsx", ".jsx", ".js", ".ts" ]
+        extensions: [ ".tsx", ".jsx", ".js", ".ts" ],
+        alias: {
+            utils: path.resolve(__dirname, "package", "utils.ts")
+        }
     },
 
     stats: "minimal",

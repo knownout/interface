@@ -5,7 +5,7 @@
  */
 
 import React, { forwardRef, memo, useState } from "react";
-import { ICommonProps, kwtClassNames } from "../../utils";
+import { ICommonProps, kwtClassNames } from "utils";
 
 type TSelectionUpdateDispatcher = (selected: IRadioGroupContext["selected"]) => string | null
 

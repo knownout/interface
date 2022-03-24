@@ -21,3 +21,5 @@ export interface ICommonProps
 
     className?: string;
 }
+
+export type TDispatcher<T = any> = (value: T) => T;
