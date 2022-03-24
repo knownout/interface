@@ -4,8 +4,7 @@
  * https://github.com/re-knownout/lib
  */
 
-import { classNames } from "@knownout/lib";
+import { default as Group } from "./RadioGroup";
+import { default as Button } from "./RadioButton";
 
-export default function kwtClassNames (...entries: any[]) {
-    return classNames(entries);
-}
+export default Object.assign(Group, { Button });

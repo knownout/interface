@@ -5,6 +5,7 @@ import Button from "../package/components/Button";
 import "./styles.scss";
 import Input from "../package/components/Input";
 import Checkbox from "../package/components/Checkbox";
+import RadioGroup from "../package/components/RadioGroup";
 
 function App () {
     return <>
@@ -16,6 +17,10 @@ function App () {
                 return <span>{ checked ? "Not he he" : "He he?" }</span>;
             } }
         </Checkbox>
+        <RadioGroup allowUncheck={ true }>
+            <RadioGroup.Button>Hello</RadioGroup.Button>
+            <RadioGroup.Button>World</RadioGroup.Button>
+        </RadioGroup>
     </>;
 }
 

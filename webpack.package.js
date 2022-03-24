@@ -23,6 +23,11 @@ const packageConfig = Object.assign(defaultConfig, {
             commonjs: "@knownout/lib",
             commonjs2: "@knownout/lib",
             amd: "@knownout/lib"
+        },
+        "react": {
+            commonjs: "react",
+            commonjs2: "react",
+            amd: "react"
         }
     }
 });

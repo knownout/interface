@@ -5,15 +5,16 @@
  */
 
 import React, { forwardRef, memo, useState } from "react";
-import kwtClassNames from "../utils/kwt-ui";
+import { ICommonProps, kwtClassNames } from "../utils";
 import { limitNumber } from "@knownout/lib";
 
-interface IButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick">
+interface IButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick">, ICommonProps
 {
     // Min async loading time
     minLoadingTime?: number;
-    disabled?: boolean;
+
     icon?: JSX.Element;
+
     children: any;
 
     // Disable button while loading

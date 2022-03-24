@@ -5,19 +5,17 @@
  */
 
 import React, { ForwardedRef, forwardRef, memo, useCallback, useState } from "react";
-import kwtClassNames from "../utils/kwt-ui";
+import { ICommonProps, kwtClassNames } from "../utils";
 
 type T = HTMLDivElement;
 
-interface ICheckboxProps
+interface ICheckboxProps extends ICommonProps
 {
     // Function, element(s) or string
     children: ((checked: boolean) => JSX.Element | JSX.Element[]) | JSX.Element[] | JSX.Element | string;
 
     // If true, will be checked by default
     defaultChecked?: boolean;
-
-    disabled?: boolean;
 
     // Fires when checked state changes (will not be fired when disabled)
     onClick? (checked: boolean, target: T, event: React.MouseEvent<T>): void;

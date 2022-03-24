@@ -5,6 +5,7 @@
  */
 
 import React from "react";
+import { ICommonProps } from "../../utils";
 
 export { default } from "./Input";
 
@@ -16,7 +17,7 @@ export type InputMask = [ RegExp, string | ((substring: string, ...args: any[]) 
 /**
  * Custom props for the Input component
  */
-export interface IInputProps<T = HTMLInputElement>
+export interface IInputProps<T = HTMLInputElement> extends ICommonProps
 {
     // Inline render icon to the side of the Input component
     icon?: JSX.Element;
@@ -28,8 +29,6 @@ export interface IInputProps<T = HTMLInputElement>
 
     // Default value for native Input element (cannot be changed dynamically)
     children?: string;
-
-    disabled?: boolean;
 
     type?: "text" | "email" | "tel" | "password";
 
