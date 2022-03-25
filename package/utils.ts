@@ -22,4 +22,4 @@ export interface ICommonProps
     className?: string;
 }
 
-export type TDispatcher<T = any> = (value: T) => T;
+export type TDispatcher<T = any, R = T> = (value: T) => R;

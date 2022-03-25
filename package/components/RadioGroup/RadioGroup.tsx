@@ -5,9 +5,7 @@
  */
 
 import React, { forwardRef, memo, useState } from "react";
-import { ICommonProps, kwtClassNames } from "utils";
-
-type TSelectionUpdateDispatcher = (selected: IRadioGroupContext["selected"]) => string | null
+import { ICommonProps, kwtClassNames, TDispatcher } from "utils";
 
 interface IRadioGroupContext
 {
@@ -15,7 +13,7 @@ interface IRadioGroupContext
     selected: string | null;
 
     // Update selected item.
-    setSelected (dispatch: TSelectionUpdateDispatcher): void;
+    setSelected (dispatch: TDispatcher<IRadioGroupContext["selected"]>): void;
 }
 
 /**
@@ -47,7 +45,7 @@ export default memo(forwardRef((props: IRadioGroupProps, ref: React.ForwardedRef
     const radioGroupClassName = kwtClassNames("radio-group", props.className, { disabled });
 
     // Add-on over setSelected function to provide extra functionality.
-    const updateSelection = (dispatch: TSelectionUpdateDispatcher) => setSelected(selected => {
+    const updateSelection = (dispatch: TDispatcher<IRadioGroupContext["selected"]>) => setSelected(selected => {
         props.onSelectionChange && props.onSelectionChange(selected);
         const nextState = dispatch(selected);
 

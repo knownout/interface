@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Button from "../package/components/Button";
 
 import "./styles.scss";
+
+import Button from "../package/components/Button";
 import Input from "../package/components/Input";
 import Checkbox from "../package/components/Checkbox";
 import RadioGroup from "../package/components/RadioGroup";
+import Accordion from "../package/components/Accordion";
 
 function App () {
     return <>
@@ -21,6 +23,15 @@ function App () {
             <RadioGroup.Button>Hello</RadioGroup.Button>
             <RadioGroup.Button>World</RadioGroup.Button>
         </RadioGroup>
+
+        <Accordion allowMultiple={ false } onOpenElementsChange={ console.log }>
+            <Accordion.Item title="First">
+                Hello world
+            </Accordion.Item>
+            <Accordion.Item title="Second">
+                Hello world
+            </Accordion.Item>
+        </Accordion>
     </>;
 }
 
