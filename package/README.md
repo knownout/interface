@@ -12,8 +12,7 @@ components with a short description.
 |   6 |   ✅   | CheckBox   | Boxes that are checked when activated                              |
 |   7 |   ✅   | RadioGroup | Like CheckBox, but only one can be selected                        |
 |   8 |   ❌   | TagInput   | Input with list of allowed values based on the contenteditable div |
-|   9 |   ❌   | DateSelect | Date and time selector component                                   |
-|  10 |   ❌   | Progress   | Progress bar component                                             |
+|   9 |   ❌   | Progress   | Progress bar component                                             |
 
 re-knownout - https://github.com/re-knownout/
 <br>knownout@hotmail.com
