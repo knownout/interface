@@ -12,33 +12,47 @@ type T = HTMLDivElement;
 interface ICheckboxProps extends ICommonProps
 {
     // Function, element(s) or string
-    children: ((checked: boolean) => JSX.Element | JSX.Element[]) | JSX.Element[] | JSX.Element | string;
+    children: ((checked: string | null) => JSX.Element | JSX.Element[]) | JSX.Element[] | JSX.Element | string;
 
     // If true, will be checked by default
     defaultChecked?: boolean;
 
+    customStatesList?: (string | null)[];
+
     // Fires when checked state changes (will not be fired when disabled)
-    onClick? (checked: boolean, target: T, event: React.MouseEvent<T>): void;
+    onClick? (checked: string | null, target: T, event: React.MouseEvent<T>): void;
 }
 
 /**
  * React Checkbox component is the box that are checked
  * (ticked) when activated, like you might see
  * in an official government paper form.
- * @constructor
+ *
+ * _Component can use multiple states, which
+ * change after click_
  */
 export default memo(forwardRef((props: ICheckboxProps, ref: ForwardedRef<HTMLDivElement>) => {
-    const [ checked, setChecked ] = useState(Boolean(props.defaultChecked));
+    const statesList = props.customStatesList || [ "checked", null ];
+
+    const [ checked, setChecked ] = useState(props.defaultChecked ? statesList[0] as string : null);
+
+    if (statesList.length < 2) {
+        console.warn("It make no sense to render checkbox with only one state available.");
+        return null;
+    }
 
     // Update state on click
     const onComponentClick = useCallback((event: React.MouseEvent<T>) => setChecked(checked => {
         if (props.disabled) return checked;
 
-        props.onClick && props.onClick(!checked, event.target as T, event);
-        return !checked;
+        const nextStateIndex = statesList.indexOf(checked) + 1;
+        const nextState = nextStateIndex >= statesList.length ? 0 : nextStateIndex;
+
+        props.onClick && props.onClick(checked, event.target as T, event);
+        return statesList[nextState] as string;
     }), [ props.onClick ]);
 
-    const checkboxClassName = kwtClassNames("checkbox", { checked, disabled: props.disabled });
+    const checkboxClassName = kwtClassNames("checkbox", checked, { disabled: props.disabled });
     return <div className={ checkboxClassName } onClick={ onComponentClick } ref={ ref }>
         { typeof props.children === "function" ? props.children(checked) : props.children }
     </div>;

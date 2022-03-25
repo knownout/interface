@@ -4,8 +4,16 @@
  * https://github.com/re-knownout/lib
  */
 
-import { classNames } from "@knownout/lib";
+import Accordion from "./components/Accordion";
+import Input from "./components/Input";
+import RadioGroup from "./components/RadioGroup";
+import Button from "./components/Button";
+import Checkbox from "./components/Checkbox";
 
-export default function InterfaceModule () {
-    console.log("Inside module", classNames("hello", "world"));
-}
+export {
+    Accordion,
+    Input,
+    RadioGroup,
+    Button,
+    Checkbox
+};

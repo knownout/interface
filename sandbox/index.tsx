@@ -14,7 +14,7 @@ function App () {
         <h1>React component library @knownout/interface</h1>
         <Button>Hello world</Button>
         <Input placeholder="Hello world" />
-        <Checkbox>
+        <Checkbox customStatesList={ [ "first", "second", null ] }>
             { checked => {
                 return <span>{ checked ? "Not he he" : "He he?" }</span>;
             } }
