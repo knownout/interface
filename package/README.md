@@ -11,8 +11,6 @@ components with a short description.
 |   5 |   ❌   | Dropdown   | Selector of predefined items with input ability                    |
 |   6 |   ✅   | CheckBox   | Boxes that are checked when activated                              |
 |   7 |   ✅   | RadioGroup | Like CheckBox, but only one can be selected                        |
-|   8 |   ❌   | TagInput   | Input with list of allowed values based on the contenteditable div |
-|   9 |   ❌   | Progress   | Progress bar component                                             |
 
 re-knownout - https://github.com/re-knownout/
 <br>knownout@hotmail.com

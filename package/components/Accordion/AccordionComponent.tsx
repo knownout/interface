@@ -4,7 +4,7 @@
  * https://github.com/re-knownout/lib
  */
 
-import React, { forwardRef, memo, useState } from "react";
+import React, { forwardRef, memo, useCallback, useState } from "react";
 import { ICommonProps, kwtClassNames, TDispatcher } from "utils";
 
 type T = HTMLDivElement;
@@ -16,7 +16,7 @@ interface IAccordionContext
     openItems: string[];
 
     // Update open items list.
-    setOpenItems (dispatch: TAccordionDispatcher): void;
+    updateOpenItems (dispatch: TAccordionDispatcher): void;
 }
 
 /**
@@ -52,7 +52,7 @@ export default memo(forwardRef((props: IAccordionProps, ref: React.ForwardedRef<
     const [ openItems, setOpenItems ] = useState<string[]>([ ...defaultOpenedItems ]);
 
     // Add-on over state update function to provide extra functionality
-    const updateOpenItems = (dispatch: (TAccordionDispatcher)) => setOpenItems(openItems => {
+    const updateOpenItems = useCallback((dispatch: (TAccordionDispatcher)) => setOpenItems(openItems => {
         let nextState = dispatch(openItems);
 
         // Check if multiple open items allowed
@@ -60,13 +60,13 @@ export default memo(forwardRef((props: IAccordionProps, ref: React.ForwardedRef<
 
         props.onOpenElementsChange && props.onOpenElementsChange(nextState);
         return nextState;
-    });
+    }), [ props.allowMultiple, props.onOpenElementsChange ]);
 
     const { disabled, className } = props;
 
     const accordionClassName = kwtClassNames("accordion", className, { disabled });
     return <div className={ accordionClassName } ref={ ref }>
-        <AccordionContext.Provider value={ { openItems, setOpenItems: updateOpenItems } }>
+        <AccordionContext.Provider value={ { openItems, updateOpenItems } }>
             { props.children }
         </AccordionContext.Provider>
     </div>;

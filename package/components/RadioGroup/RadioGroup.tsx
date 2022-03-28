@@ -4,7 +4,7 @@
  * https://github.com/re-knownout/lib
  */
 
-import React, { forwardRef, memo, useState } from "react";
+import React, { forwardRef, memo, useCallback, useState } from "react";
 import { ICommonProps, kwtClassNames, TDispatcher } from "utils";
 
 interface IRadioGroupContext
@@ -13,7 +13,7 @@ interface IRadioGroupContext
     selected: string | null;
 
     // Update selected item.
-    setSelected (dispatch: TDispatcher<IRadioGroupContext["selected"]>): void;
+    updateSelected (dispatch: TDispatcher<string | null>): void;
 }
 
 /**
@@ -45,17 +45,17 @@ export default memo(forwardRef((props: IRadioGroupProps, ref: React.ForwardedRef
     const radioGroupClassName = kwtClassNames("radio-group", props.className, { disabled });
 
     // Add-on over setSelected function to provide extra functionality.
-    const updateSelection = (dispatch: TDispatcher<IRadioGroupContext["selected"]>) => setSelected(selected => {
+    const updateSelected = useCallback((dispatch: TDispatcher<string | null>) => setSelected(selected => {
         props.onSelectionChange && props.onSelectionChange(selected);
         const nextState = dispatch(selected);
 
         // Reject null if uncheck not allowed
         if (!props.allowUncheck && nextState === null) return selected;
         return nextState;
-    });
+    }), [ props.allowUncheck, setSelected ]);
 
     return <div className={ radioGroupClassName } ref={ ref }>
-        <RadioGroupContext.Provider value={ { selected, setSelected: updateSelection } }>
+        <RadioGroupContext.Provider value={ { selected, updateSelected } }>
             { props.children }
         </RadioGroupContext.Provider>
     </div>;

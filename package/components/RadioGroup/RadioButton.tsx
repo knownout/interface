@@ -24,18 +24,15 @@ interface IRadioButtonProps extends ICommonProps
  * (can be created only inside RadioGroup component).
  */
 export default memo(forwardRef((props: IRadioButtonProps, ref: React.ForwardedRef<T>) => {
-    const { selected, setSelected } = useContext(RadioGroupContext);
+    const { selected, updateSelected } = useContext(RadioGroupContext);
     const radioButtonClassName = kwtClassNames("radio-button", props.className, {
         selected: selected == props.children, disabled: props.disabled
     });
 
     // If not inside RadioGroup context, show warning.
-    if (!setSelected) {
-        console.warn("It makes no sense to render a radio button outside of a radio group component.");
-        return null;
-    }
+    if (!updateSelected) return null;
 
-    const onComponentClick = useCallback((event: React.MouseEvent<T>) => setSelected(selected => {
+    const onComponentClick = useCallback((event: React.MouseEvent<T>) => updateSelected(selected => {
         const nextState = selected == props.children ? null : props.children;
 
         props.onClick && props.onClick(Boolean(nextState), event.target as T, event);

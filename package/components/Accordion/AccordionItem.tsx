@@ -24,16 +24,12 @@ interface IAccordionItemProps extends ICommonProps
  * (can be created only inside Accordion component).
  */
 export default memo(forwardRef((props: IAccordionItemProps, ref: React.ForwardedRef<T>) => {
-    const { openItems, setOpenItems } = useContext(AccordionContext);
-
-    if (!setOpenItems) {
-        console.warn("It make no sense to use accordion item outside of accordion component.");
-        return null;
-    }
-
+    const { openItems, updateOpenItems } = useContext(AccordionContext);
     const { className, disabled } = props;
 
-    const onComponentClick = useCallback((event: React.MouseEvent<T>) => setOpenItems(openItems => {
+    if (!updateOpenItems) return null;
+
+    const onComponentClick = useCallback((event: React.MouseEvent<T>) => updateOpenItems(openItems => {
         const target = event.target as T;
         let nextState = [ ...openItems ];
 
@@ -42,15 +38,15 @@ export default memo(forwardRef((props: IAccordionItemProps, ref: React.Forwarded
 
         props.onClick && props.onClick(nextState.includes(props.title), target, event);
         return nextState;
-    }), []);
+    }), [ props.onClick, props.title ]);
 
     const accordionItemClassName = kwtClassNames("accordion-item", className, {
         open: openItems && openItems.includes(props.title),
         disabled
     });
 
-    return <div className={ accordionItemClassName } ref={ ref } onClick={ onComponentClick }>
-        <span children={ props.title } />
+    return <div className={ accordionItemClassName } ref={ ref }>
+        <span children={ props.title } onClick={ onComponentClick } />
         <div className="content">
             { props.children }
         </div>
