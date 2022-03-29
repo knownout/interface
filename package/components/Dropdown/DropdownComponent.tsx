@@ -35,6 +35,9 @@ interface IDropdownProps extends ICommonProps
     // Allow to de-select selected items.
     allowUncheck?: boolean;
 
+    // Default selected index of item.
+    defaultSelected?: number;
+
     // Fires when selected item changes (even if unchecked).
     onSelectionChange? (selected: string | null): void;
 
@@ -47,7 +50,12 @@ interface IDropdownProps extends ICommonProps
  * selector with predefined items using DropdownItem components.
  */
 export default memo(forwardRef((props: IDropdownProps, ref: React.ForwardedRef<T>) => {
-    const [ selected, setSelected ] = useState<string | null>(null);
+    const defaultSelected = [ props.children ].flat()
+            .filter((item, index) => index === props.defaultSelected)
+            .map<string>(e => e.props.children)[0]
+        || null;
+
+    const [ selected, setSelected ] = useState(defaultSelected);
     const [ open, setOpen ] = useState(false);
 
     // Get common props as variables.

@@ -34,7 +34,7 @@ function App () {
             </AccordionItem>
         </Accordion>
 
-        <Dropdown defaultTitle="Select something..." allowUncheck={ true }>
+        <Dropdown defaultTitle="Select something..." allowUncheck={ true } defaultSelected={ 0 }>
             <DropdownItem>Hello</DropdownItem>
             <DropdownItem>World</DropdownItem>
         </Dropdown>
