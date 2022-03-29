@@ -15,7 +15,7 @@
         "resolveJsonModule": true,
         "paths": {
             "utils": [
-                "./package/utils.ts"
+                "./package/components/utils.ts"
             ]
         },
         "sourceMap": true,

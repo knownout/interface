@@ -4,7 +4,10 @@
  * https://github.com/re-knownout/lib
  */
 
-import { default as Component } from "./AccordionComponent";
-import { default as Item } from "./AccordionItem";
+import { default as Accordion } from "./AccordionComponent";
+import AccordionItem from "./AccordionItem";
 
-export default Object.assign(Component, { Item });
+export {
+    Accordion,
+    AccordionItem
+};

@@ -8,6 +8,7 @@ import Input from "../package/components/Input";
 import Checkbox from "../package/components/Checkbox";
 import RadioGroup from "../package/components/RadioGroup";
 import Accordion from "../package/components/Accordion";
+import Dropdown from "../package/components/Dropdown";
 
 function App () {
     return <>
@@ -32,6 +33,11 @@ function App () {
                 Hello world
             </Accordion.Item>
         </Accordion>
+
+        <Dropdown defaultTitle="Select something...">
+            <Dropdown.Item>Hello</Dropdown.Item>
+            <Dropdown.Item>World</Dropdown.Item>
+        </Dropdown>
     </>;
 }
 

@@ -4,16 +4,25 @@
  * https://github.com/re-knownout/lib
  */
 
-import Accordion from "./components/Accordion";
+import { Accordion, AccordionItem } from "./components/Accordion";
+import { Dropdown, DropdownItem } from "./components/Dropdown";
+import { RadioButton, RadioGroup } from "./components/RadioGroup";
+
 import Input from "./components/Input";
-import RadioGroup from "./components/RadioGroup";
 import Button from "./components/Button";
 import Checkbox from "./components/Checkbox";
 
 export {
     Accordion,
-    Input,
+    AccordionItem,
+
+    Dropdown,
+    DropdownItem,
+
     RadioGroup,
+    RadioButton,
+
+    Input,
     Button,
     Checkbox
 };

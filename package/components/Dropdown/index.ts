@@ -4,10 +4,10 @@
  * https://github.com/re-knownout/lib
  */
 
-import RadioGroup from "./RadioGroup";
-import RadioButton from "./RadioButton";
+import { default as Dropdown } from "./DropdownComponent";
+import DropdownItem from "./DropdownItem";
 
 export {
-    RadioGroup,
-    RadioButton
+    Dropdown,
+    DropdownItem
 };
