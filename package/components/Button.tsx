@@ -4,7 +4,7 @@
  * https://github.com/re-knownout/lib
  */
 
-import React, { forwardRef, memo, useState } from "react";
+import React, { forwardRef, memo, useCallback, useState } from "react";
 import { ICommonProps, kwtClassNames } from "utils";
 import { limitNumber } from "@knownout/lib";
 
@@ -58,16 +58,16 @@ export default memo(forwardRef((props: IButtonProps, ref: React.ForwardedRef<HTM
     const buttonDisabled = disableOnLoading ? loading || disabled : disabled;
 
     // Default handler for async exceptions (rejected).
-    const asyncExceptionHandler = (exception?: any) => {
+    const asyncExceptionHandler = useCallback((exception?: any) => {
         if (onAsyncException) return onAsyncException(exception);
 
         console.warn("Exception occurred while preforming async click action");
         console.warn("Provide onAsyncException handler to suppress this message");
         console.error(exception);
-    };
+    }, [ onAsyncException ]);
 
     // Button click event handler.
-    const onComponentClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const onComponentClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
         if (!onClick || buttonDisabled) return;
 
         // Get event target and click function response.
@@ -86,7 +86,7 @@ export default memo(forwardRef((props: IButtonProps, ref: React.ForwardedRef<HTM
             // Wait at least (minLoadingTime)ms.
             setTimeout(() => setLoading(false), limitNumber(processTimeLeft, { bottom: 0 }));
         });
-    };
+    }, [ onClick, buttonDisabled, onAsyncCallback, asyncExceptionHandler ]);
 
     const buttonClassName = kwtClassNames("button", className, { loading, disabled: buttonDisabled });
     return <button className={ buttonClassName } { ...nativeProps } onClick={ onComponentClick } ref={ ref }>

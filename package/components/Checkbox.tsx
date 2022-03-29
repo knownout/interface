@@ -36,10 +36,7 @@ export default memo(forwardRef((props: ICheckboxProps, ref: ForwardedRef<HTMLDiv
 
     const [ checked, setChecked ] = useState(props.defaultChecked ? statesList[0] as string : null);
 
-    if (statesList.length < 2) {
-        console.warn("It make no sense to render checkbox with only one state available.");
-        return null;
-    }
+    if (statesList.length < 2) return null;
 
     // Update state on click
     const onComponentClick = useCallback((event: React.MouseEvent<T>) => setChecked(checked => {

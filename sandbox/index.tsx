@@ -6,13 +6,13 @@ import "./styles.scss";
 import Button from "../package/components/Button";
 import Input from "../package/components/Input";
 import Checkbox from "../package/components/Checkbox";
-import RadioGroup from "../package/components/RadioGroup";
-import Accordion from "../package/components/Accordion";
-import Dropdown from "../package/components/Dropdown";
+import { RadioButton, RadioGroup } from "../package/components/RadioGroup";
+import { Accordion, AccordionItem } from "../package/components/Accordion";
+import { Dropdown, DropdownItem } from "../package/components/Dropdown";
 
 function App () {
     return <>
-        <h1>React component library @knownout/interface</h1>
+        <h1>React components library @knownout/interface</h1>
         <Button>Hello world</Button>
         <Input placeholder="Hello world" />
         <Checkbox customStatesList={ [ "first", "second", null ] }>
@@ -21,22 +21,22 @@ function App () {
             } }
         </Checkbox>
         <RadioGroup allowUncheck={ true }>
-            <RadioGroup.Button>Hello</RadioGroup.Button>
-            <RadioGroup.Button>World</RadioGroup.Button>
+            <RadioButton>Hello</RadioButton>
+            <RadioButton>World</RadioButton>
         </RadioGroup>
 
         <Accordion allowMultiple={ false } onOpenElementsChange={ console.log }>
-            <Accordion.Item title="First">
+            <AccordionItem title="First">
                 Hello world
-            </Accordion.Item>
-            <Accordion.Item title="Second">
+            </AccordionItem>
+            <AccordionItem title="Second">
                 Hello world
-            </Accordion.Item>
+            </AccordionItem>
         </Accordion>
 
-        <Dropdown defaultTitle="Select something...">
-            <Dropdown.Item>Hello</Dropdown.Item>
-            <Dropdown.Item>World</Dropdown.Item>
+        <Dropdown defaultTitle="Select something..." allowUncheck={ true }>
+            <DropdownItem>Hello</DropdownItem>
+            <DropdownItem>World</DropdownItem>
         </Dropdown>
     </>;
 }

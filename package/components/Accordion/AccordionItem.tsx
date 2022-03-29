@@ -29,6 +29,7 @@ export default memo(forwardRef((props: IAccordionItemProps, ref: React.Forwarded
 
     if (!updateOpenItems) return null;
 
+    // Execute a dispatcher from Accordion component.
     const onComponentClick = useCallback((event: React.MouseEvent<T>) => updateOpenItems(openItems => {
         const target = event.target as T;
         let nextState = [ ...openItems ];

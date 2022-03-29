@@ -6,7 +6,7 @@ components with a short description.
 Package README and files can be found here:
 https://github.com/re-knownout/interface/tree/master/package
 
-The files in the sandbox folder are just a stub to play with library functions.
+Files in the `sandbox` folder are just a stub to play with library functions.
 
 re-knownout - https://github.com/re-knownout/
 <br>knownout@hotmail.com

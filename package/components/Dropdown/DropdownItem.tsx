@@ -20,11 +20,16 @@ interface IDropdownItemProps extends Omit<ICommonProps, "disabled">
     onClick? (selected: boolean, target: T, event: React.MouseEvent<T>): void;
 }
 
+/**
+ * React DropdownItem component for creating dropdown items
+ * (can be created only inside Dropdown component).
+ */
 export default memo(forwardRef((props: IDropdownItemProps, ref: React.ForwardedRef<T>) => {
     const { selected, updateSelected } = useContext(DropdownContext);
 
     if (!updateSelected) return null;
 
+    // Execute a dispatcher from Dropdown component.
     const onComponentClick = useCallback((event: React.MouseEvent<T>) => updateSelected(state => {
         props.onClick && props.onClick(!(state === props.children), event.target as T, event);
 
@@ -32,6 +37,7 @@ export default memo(forwardRef((props: IDropdownItemProps, ref: React.ForwardedR
         else return props.children;
     }), [ props.onClick, updateSelected ]);
 
+    // Generate class name.
     const dropdownItemClassName = kwtClassNames("dropdown-item", props.className, {
         selected: selected === props.children
     });
