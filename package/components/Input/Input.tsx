@@ -1,6 +1,6 @@
 import React, { forwardRef, memo, useCallback } from "react";
 import { TInputProps, useMask } from "./index";
-import { kwtClassNames } from "utils";
+import { kwtClassNames } from "../utils";
 
 /**
  * Custom Input component with ability of applying Input masks and

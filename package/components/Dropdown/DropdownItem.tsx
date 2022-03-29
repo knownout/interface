@@ -5,7 +5,7 @@
  */
 
 import React, { forwardRef, memo, useCallback, useContext } from "react";
-import { ICommonProps, kwtClassNames } from "utils";
+import { ICommonProps, kwtClassNames } from "../utils";
 import button from "../Button";
 import { DropdownContext } from "./DropdownComponent";
 

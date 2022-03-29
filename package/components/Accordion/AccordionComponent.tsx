@@ -5,7 +5,7 @@
  */
 
 import React, { forwardRef, memo, useCallback, useState } from "react";
-import { ICommonProps, kwtClassNames, TDispatcher } from "utils";
+import { ICommonProps, kwtClassNames, TDispatcher } from "../utils";
 
 type T = HTMLDivElement;
 type TAccordionDispatcher = TDispatcher<IAccordionContext["openItems"]>;

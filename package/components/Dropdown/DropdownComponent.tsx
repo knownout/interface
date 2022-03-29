@@ -4,7 +4,7 @@
  * https://github.com/re-knownout/lib
  */
 
-import { ICommonProps, kwtClassNames, TDispatcher } from "utils";
+import { ICommonProps, kwtClassNames, TDispatcher } from "../utils";
 import React, { forwardRef, memo, useCallback, useState } from "react";
 
 interface IDropdownContext

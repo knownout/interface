@@ -5,7 +5,7 @@
  */
 
 import React, { forwardRef, memo, useCallback, useState } from "react";
-import { ICommonProps, kwtClassNames } from "utils";
+import { ICommonProps, kwtClassNames } from "./utils";
 import { limitNumber } from "@knownout/lib";
 
 interface IButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick">, ICommonProps

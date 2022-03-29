@@ -5,7 +5,7 @@
  */
 
 import React, { forwardRef, memo, useCallback, useContext } from "react";
-import { ICommonProps, kwtClassNames } from "utils";
+import { ICommonProps, kwtClassNames } from "../utils";
 import { AccordionContext } from "./AccordionComponent";
 
 type T = HTMLDivElement;

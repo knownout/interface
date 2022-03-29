@@ -5,7 +5,7 @@
  */
 
 import React, { ForwardedRef, forwardRef, memo, useCallback, useState } from "react";
-import { ICommonProps, kwtClassNames } from "utils";
+import { ICommonProps, kwtClassNames } from "./utils";
 
 type T = HTMLDivElement;
 

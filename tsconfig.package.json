@@ -4,12 +4,7 @@
         "declaration": true,
         "removeComments": false,
         "outDir": "./package/dist",
-        "declarationDir": "./package/dist",
-        "paths": {
-            "utils": [
-                "./package/components/utils.ts"
-            ]
-        }
+        "declarationDir": "./package/dist"
     },
     "include": [
         "./package/**/*"

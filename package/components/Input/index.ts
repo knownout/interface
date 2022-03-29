@@ -5,7 +5,7 @@
  */
 
 import React from "react";
-import { ICommonProps } from "utils";
+import { ICommonProps } from "../utils";
 
 export { default } from "./Input";
 
