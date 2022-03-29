@@ -1,17 +1,19 @@
 {
     "extends": "./tsconfig.json",
-
     "compilerOptions": {
         "declaration": true,
         "removeComments": false,
         "outDir": "./package/dist",
-        "declarationDir": "./package/dist"
+        "declarationDir": "./package/dist",
+        "paths": {
+            "utils": [
+                "./package/components/utils.ts"
+            ]
+        }
     },
-
     "include": [
         "./package/**/*"
     ],
-
     "exclude": [
         "./node_modules/**/*",
         "./package/**/tests/**/*",

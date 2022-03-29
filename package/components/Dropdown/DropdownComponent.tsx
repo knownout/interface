@@ -43,6 +43,8 @@ interface IDropdownProps extends ICommonProps
 
     // Fires when dropdown title element get clicked.
     onTitleClick? (open: boolean, target: T, event: React.MouseEvent<T>): void;
+
+    onOpenStateChange? (open: boolean): void;
 }
 
 /**
@@ -65,6 +67,7 @@ export default memo(forwardRef((props: IDropdownProps, ref: React.ForwardedRef<T
     const onTitleClick = useCallback((event: React.MouseEvent<T>) => setOpen(open => {
         if (disabled) return open;
 
+        props.onOpenStateChange && props.onOpenStateChange(!open);
         props.onTitleClick && props.onTitleClick(!open, event.target as T, event);
         return !open;
     }), [ props.onTitleClick ]);
@@ -72,6 +75,8 @@ export default memo(forwardRef((props: IDropdownProps, ref: React.ForwardedRef<T
     // Update selected item state with dispatcher value (from item).
     const updateSelected = useCallback((dispatcher: TDispatcher<string | null>) => setSelected(state => {
         setOpen(false);
+        props.onOpenStateChange && props.onOpenStateChange(false);
+
         if (disabled) return state;
 
         const nextState = dispatcher(state);
