@@ -58,7 +58,7 @@ export default memo(forwardRef((props: IAccordionProps, ref: React.ForwardedRef<
         // Check if multiple open items allowed
         if (!props.allowMultiple) nextState = nextState.slice(-1);
 
-        props.onOpenElementsChange && props.onOpenElementsChange(nextState);
+        setTimeout(() => props.onOpenElementsChange && props.onOpenElementsChange(nextState));
         return nextState;
     }), [ props.allowMultiple, props.onOpenElementsChange ]);
 

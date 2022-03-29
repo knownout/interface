@@ -42,7 +42,7 @@ export default memo(forwardRef((props: IAccordionItemProps, ref: React.Forwarded
         if (nextState.includes(props.title)) nextState = nextState.filter(item => item != props.title);
         else nextState.push(props.title);
 
-        props.onClick && props.onClick(nextState.includes(props.title), target, event);
+        setTimeout(() => props.onClick && props.onClick(nextState.includes(props.title), target, event));
         return nextState;
     }), [ props.onClick, props.title ]);
 

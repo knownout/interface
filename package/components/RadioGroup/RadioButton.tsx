@@ -37,7 +37,7 @@ export default memo(forwardRef((props: IRadioButtonProps, ref: React.ForwardedRe
     const onComponentClick = useCallback((event: React.MouseEvent<T>) => updateSelected(selected => {
         const nextState = selected == props.children ? null : props.children;
 
-        props.onClick && props.onClick(Boolean(nextState), event.target as T, event);
+        setTimeout(() => props.onClick && props.onClick(Boolean(nextState), event.target as T, event));
         return nextState;
     }), [ props.children ]);
 

@@ -70,8 +70,10 @@ export default memo(forwardRef((props: IDropdownProps, ref: React.ForwardedRef<T
     const onTitleClick = useCallback((event: React.MouseEvent<T>) => setOpen(open => {
         if (disabled) return open;
 
-        props.onOpenStateChange && props.onOpenStateChange(!open);
-        props.onTitleClick && props.onTitleClick(!open, event.target as T, event);
+        setTimeout(() => {
+            props.onOpenStateChange && props.onOpenStateChange(!open);
+            props.onTitleClick && props.onTitleClick(!open, event.target as T, event);
+        });
         return !open;
     }), [ props.onTitleClick ]);
 
@@ -85,7 +87,10 @@ export default memo(forwardRef((props: IDropdownProps, ref: React.ForwardedRef<T
         const nextState = dispatcher(state);
         if (nextState === null && !props.allowUncheck) return state;
 
-        props.onSelectionChange && props.onSelectionChange(nextState);
+        setTimeout(() => {
+            props.onSelectionChange && props.onSelectionChange(nextState);
+        });
+
         return nextState;
     }), []);
 

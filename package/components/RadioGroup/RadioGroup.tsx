@@ -46,8 +46,9 @@ export default memo(forwardRef((props: IRadioGroupProps, ref: React.ForwardedRef
 
     // Add-on over setSelected function to provide extra functionality.
     const updateSelected = useCallback((dispatch: TDispatcher<string | null>) => setSelected(selected => {
-        props.onSelectionChange && props.onSelectionChange(selected);
         const nextState = dispatch(selected);
+
+        setTimeout(() => props.onSelectionChange && props.onSelectionChange(nextState));
 
         // Reject null if uncheck not allowed
         if (!props.allowUncheck && nextState === null) return selected;

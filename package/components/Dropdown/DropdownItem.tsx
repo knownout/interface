@@ -31,7 +31,7 @@ export default memo(forwardRef((props: IDropdownItemProps, ref: React.ForwardedR
 
     // Execute a dispatcher from Dropdown component.
     const onComponentClick = useCallback((event: React.MouseEvent<T>) => updateSelected(state => {
-        props.onClick && props.onClick(!(state === props.children), event.target as T, event);
+        setTimeout(() => props.onClick && props.onClick(!(state === props.children), event.target as T, event));
 
         if (state === props.children) return null;
         else return props.children;
