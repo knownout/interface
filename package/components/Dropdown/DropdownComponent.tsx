@@ -94,8 +94,8 @@ export default memo(forwardRef((props: IDropdownProps, ref: React.ForwardedRef<T
 
     const dropdownClassName = kwtClassNames("dropdown", className, { open, disabled });
     return <div className={ dropdownClassName } ref={ ref }>
-        <div className="title">
-            <span children={ title } onClick={ onTitleClick } />
+        <div className="title" onClick={ onTitleClick }>
+            <span children={ title } />
             { props.icon && <div className="icon-holder" children={ props.icon } /> }
         </div>
         <div className="items">

@@ -52,8 +52,8 @@ export default memo(forwardRef((props: IAccordionItemProps, ref: React.Forwarded
     });
 
     return <div className={ accordionItemClassName } ref={ ref }>
-        <div className="title">
-            <span children={ props.title } onClick={ onComponentClick } />
+        <div className="title" onClick={ onComponentClick }>
+            <span children={ props.title } />
             { props.icon && <div className="icon-holder" children={ props.icon } /> }
         </div>
         <div className="content">
