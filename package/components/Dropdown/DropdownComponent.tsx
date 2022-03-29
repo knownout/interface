@@ -38,6 +38,9 @@ interface IDropdownProps extends ICommonProps
     // Default selected index of item.
     defaultSelected?: number;
 
+    // Add an icon to dropdown title.
+    icon?: JSX.Element;
+
     // Fires when selected item changes (even if unchecked).
     onSelectionChange? (selected: string | null): void;
 
@@ -91,7 +94,10 @@ export default memo(forwardRef((props: IDropdownProps, ref: React.ForwardedRef<T
 
     const dropdownClassName = kwtClassNames("dropdown", className, { open, disabled });
     return <div className={ dropdownClassName } ref={ ref }>
-        <span children={ title } onClick={ onTitleClick } />
+        <div className="title">
+            <span children={ title } onClick={ onTitleClick } />
+            { props.icon && <div className="icon-holder" children={ props.icon } /> }
+        </div>
         <div className="items">
             <DropdownContext.Provider value={ { selected, updateSelected } }>
                 { props.children }

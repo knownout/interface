@@ -12,6 +12,8 @@ type T = HTMLButtonElement;
 
 interface IRadioButtonProps extends ICommonProps
 {
+    icon?: JSX.Element;
+
     // Button label
     children: string;
 
@@ -40,6 +42,7 @@ export default memo(forwardRef((props: IRadioButtonProps, ref: React.ForwardedRe
     }), [ props.children ]);
 
     return <button onClick={ onComponentClick } className={ radioButtonClassName } ref={ ref }>
+        { props.icon && <div className="icon-holder" children={ props.icon } /> }
         { props.children }
     </button>;
 }));

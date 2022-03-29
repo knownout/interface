@@ -12,10 +12,15 @@ type T = HTMLDivElement;
 
 interface IAccordionItemProps extends ICommonProps
 {
+    // Item title string.
     title: string;
 
     children: any;
 
+    // Add an icon to the item title.
+    icon?: JSX.Element;
+
+    // Fires when title get clicked.
     onClick? (open: boolean, target: T, event: React.MouseEvent<T>): void;
 }
 
@@ -47,7 +52,10 @@ export default memo(forwardRef((props: IAccordionItemProps, ref: React.Forwarded
     });
 
     return <div className={ accordionItemClassName } ref={ ref }>
-        <span children={ props.title } onClick={ onComponentClick } />
+        <div className="title">
+            <span children={ props.title } onClick={ onComponentClick } />
+            { props.icon && <div className="icon-holder" children={ props.icon } /> }
+        </div>
         <div className="content">
             { props.children }
         </div>
