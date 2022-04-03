@@ -1,6 +1,12 @@
-import React, { forwardRef, memo, useCallback } from "react";
-import { TInputProps, useMask } from "./index";
+/*
+ * Copyright (c) 2022 Alexandr <re-knownout> knownout@hotmail.com
+ * Licensed under the GNU Affero General Public License v3.0 License (AGPL-3.0)
+ * https://github.com/re-knownout/lib
+ */
+
+import React, { forwardRef, memo, useCallback, useRef } from "react";
 import { kwtClassNames } from "../utils";
+import { TInputProps, useMask } from "./index";
 
 /**
  * Custom Input component with ability of applying Input masks and
@@ -71,11 +77,20 @@ export default memo(forwardRef((props: TInputProps, ref: React.ForwardedRef<T>) 
         else if (event.type === "keyup") onKeyUp && onKeyUp(...args);
     }, [ onKeyPress, onKeyDown, onKeyUp, onReturn ]);
 
+    // I don't know how to combine forwarded and mutable refs without effects, so I did this.
+    const inputHolderRef = useRef<HTMLInputElement>(null);
+    const onComponentClick = useCallback(() => {
+        if (!inputHolderRef.current) return;
+        const input = inputHolderRef.current.querySelector("input") as HTMLInputElement;
+
+        input.focus();
+    }, [ inputHolderRef.current ]);
+
     const inputClassName = kwtClassNames("input", { disabled, "has-value": value.trim().length > 0 });
-    return <div className={ inputClassName }>
+    return <div className={ inputClassName } onClick={ onComponentClick }>
         { icon && <div className="icon-holder" children={ icon } /> }
 
-        <div className="input-holder">
+        <div className="input-holder" ref={ inputHolderRef }>
             { placeholder && <div className="placeholder">{ placeholder }</div> }
             <input type={ type || "text" } { ...nativeProps }
                    onFocus={ onComponentFocusChange }
