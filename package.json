@@ -18,6 +18,7 @@
     },
     "homepage": "https://github.com/re-knownout/interface#readme",
     "devDependencies": {
+        "@knownout/lib": "^0.0.8",
         "@testing-library/react": "^12.1.4",
         "@types/jest": "^27.4.1",
         "@types/react": "^17.0.41",

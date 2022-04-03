@@ -4,8 +4,8 @@
  * https://github.com/re-knownout/lib
  */
 
+import React, { forwardRef, memo, useCallback, useEffect, useState } from "react";
 import { ICommonProps, kwtClassNames, TDispatcher } from "../utils";
-import React, { forwardRef, memo, useCallback, useState } from "react";
 
 interface IDropdownContext
 {
@@ -62,6 +62,15 @@ export default memo(forwardRef((props: IDropdownProps, ref: React.ForwardedRef<T
 
     const [ selected, setSelected ] = useState(defaultSelected);
     const [ open, setOpen ] = useState(false);
+
+    // Update state when default selected prop changed.
+    useEffect(() => {
+        const item = [ props.children ].flat()
+            .filter((item, index) => index === props.defaultSelected)
+            .map<string>(e => e.props.children)[0];
+
+        if (item && item != selected) setSelected(item);
+    }, [ props.defaultSelected ]);
 
     // Get common props as variables.
     const { disabled, className } = props;
