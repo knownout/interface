@@ -70,22 +70,21 @@ export default memo(forwardRef((props: IPopupProps, ref: Ref<HTMLDivElement>) =>
     const [ popupState, setPopupState ] = usePopupState(props.popupState, props.setPopupState);
 
     // Whole popup click event handler
-    const clickEventHandler = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+    const onComponentClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         const target = event.target as HTMLDivElement;
 
         // Check if user clicked on a root element
-        const root = target.classList.contains("popup-component");
+        const root = target.classList.contains("interface") && target.classList.contains("popup");
 
         // Execute custom click event
         props.onClick && props.onClick(target, root, event);
 
         if (!root || props.hideOnClick === false) return;
         setPopupState({ display: false });
-
     }, [ popupState, props.hideOnClick ]);
 
     const popupClassName = kwtClassNames("popup", { display: popupState.display });
-    const popupComponent = <div className={ popupClassName } onClick={ clickEventHandler } ref={ ref }>
+    const popupComponent = <div className={ popupClassName } onClick={ onComponentClick } ref={ ref }>
         <div className="popup-child">
             { popupState.content }
         </div>
