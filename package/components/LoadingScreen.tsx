@@ -5,6 +5,7 @@
  */
 
 import React, { forwardRef, memo, Ref } from "react";
+import { createPortal } from "react-dom";
 import { kwtClassNames } from "./utils";
 
 type SetterOrUpdater<T> = (valOrUpdater: ((currVal: T) => T) | T) => void;
@@ -76,10 +77,12 @@ export function useLoadingState (state: ILoadingScreenState, setState: SetterOrU
  */
 export default memo(forwardRef((props: ILoadingScreenProps, ref: Ref<HTMLDivElement>) => {
     const loadingScreenClassName = kwtClassNames("loading-screen", { display: props.state.display });
-    return <div className={ loadingScreenClassName } ref={ ref }>
+    const loadingScreenComponent = <div className={ loadingScreenClassName } ref={ ref }>
         <div className="loading-screen-wrapper">
             <div className="progress-bar" />
             { props.state.title && <span className="loading-title">{ props.state.title }</span> }
         </div>
     </div>;
+
+    return createPortal(loadingScreenComponent, props.parentElement || document.body);
 }));
