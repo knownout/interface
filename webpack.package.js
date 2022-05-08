@@ -28,11 +28,6 @@ const packageConfig = Object.assign(defaultConfig, {
             commonjs: "react",
             commonjs2: "react",
             amd: "react"
-        },
-        "recoil": {
-            commonjs: "recoil",
-            commonjs2: "recoil",
-            amd: "recoil"
         }
     }
 });

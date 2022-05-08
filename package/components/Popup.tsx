@@ -6,8 +6,9 @@
 
 import React, { forwardRef, memo, Ref, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { atom, RecoilState, useRecoilState } from "recoil";
 import { kwtClassNames } from "./utils";
+
+type SetterOrUpdater<T> = (valOrUpdater: ((currVal: T) => T) | T) => void;
 
 interface IPopupProps
 {
@@ -17,11 +18,16 @@ interface IPopupProps
     // Set false to disable hiding popups when clicked outside the wrapper.
     hideOnClick?: boolean;
 
+    // State management
+    popupState: IPopupState,
+
+    setPopupState: SetterOrUpdater<IPopupState>;
+
     // Custom mouse click event
-    onClick?: (target: HTMLDivElement, root: boolean, event: React.MouseEvent<HTMLDivElement>) => void;
+    onClick (target: HTMLDivElement, root: boolean, event: React.MouseEvent<HTMLDivElement>): void;
 }
 
-interface IPopupState
+export interface IPopupState
 {
     // Popup component display (shown) state
     display: boolean;
@@ -31,19 +37,17 @@ interface IPopupState
 }
 
 /** Popup component state */
-export const popupComponentState = atom<IPopupState>({
-    key: "popup-component-state",
-    default: { display: false }
-});
+// export const popupComponentState = atom<IPopupState>({
+//     key: "popup-component-state",
+//     default: { display: false }
+// });
 
 /**
  * A custom hook to facilitate popup state changes
  *
  * @return {[IPopupState, (state: Partial<IPopupState>) => void]}
  */
-export function usePopupState (popupRecoilState: RecoilState<IPopupState> = popupComponentState) {
-    const [ state, setState ] = useRecoilState(popupRecoilState);
-
+export function usePopupState (state: IPopupState, setState: SetterOrUpdater<IPopupState>) {
     /**
      * A function to add the ability to partially change the state of the popup.
      *
@@ -69,7 +73,7 @@ export function usePopupState (popupRecoilState: RecoilState<IPopupState> = popu
  * @internal
  */
 export default memo(forwardRef((props: IPopupProps, ref: Ref<HTMLDivElement>) => {
-    const [ popupState, setPopupState ] = usePopupState(popupComponentState);
+    const [ popupState, setPopupState ] = usePopupState(props.popupState, props.setPopupState);
 
     // Whole popup click event handler
     const clickEventHandler = useCallback((event: React.MouseEvent<HTMLDivElement>) => {

@@ -5,16 +5,20 @@
  */
 
 import React, { forwardRef, memo, Ref } from "react";
-import { atom, RecoilState, useRecoilState, useRecoilValue } from "recoil";
 import { kwtClassNames } from "./utils";
+
+type SetterOrUpdater<T> = (valOrUpdater: ((currVal: T) => T) | T) => void;
 
 interface ILoadingScreenProps
 {
     // Element that will be the parent of the loading screen component (portal)
     parentElement?: Element;
+
+    // State management
+    state: ILoadingScreenState;
 }
 
-interface ILoadingScreenState
+export interface ILoadingScreenState
 {
     // A loading screen component display (shown) state
     display: boolean;
@@ -26,19 +30,11 @@ interface ILoadingScreenState
 /** Set of active loadings */
 export const loadingBus = new Set<string>();
 
-/** Loading Screen component state */
-export const loadingScreenState = atom<ILoadingScreenState>({
-    key: "loading-screen-component-state",
-    default: { display: false }
-});
-
 /**
  * A custom hook to provide loadings start/stop functionality.
  * @return {{startLoading: (key: string, title?: string) => void, finishLoading: (key: string) => void}}
  */
-export function useLoadingState (loadingRecoilState: RecoilState<ILoadingScreenState> = loadingScreenState) {
-    const [ state, setState ] = useRecoilState(loadingRecoilState);
-
+export function useLoadingState (state: ILoadingScreenState, setState: SetterOrUpdater<ILoadingScreenState>) {
     /**
      * Start new loading with specific key and immediately change the title.
      *
@@ -79,13 +75,11 @@ export function useLoadingState (loadingRecoilState: RecoilState<ILoadingScreenS
  * @internal
  */
 export default memo(forwardRef((props: ILoadingScreenProps, ref: Ref<HTMLDivElement>) => {
-    const state = useRecoilValue(loadingScreenState);
-
-    const loadingScreenClassName = kwtClassNames("loading-screen", { display: state.display });
+    const loadingScreenClassName = kwtClassNames("loading-screen", { display: props.state.display });
     return <div className={ loadingScreenClassName } ref={ ref }>
         <div className="loading-screen-wrapper">
             <div className="progress-bar" />
-            { state.title && <span className="loading-title">{ state.title }</span> }
+            { props.state.title && <span className="loading-title">{ props.state.title }</span> }
         </div>
     </div>;
 }));
