@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { Accordion, AccordionItem } from "../package/components/Accordion";
 
 import Button from "../package/components/Button";
@@ -44,4 +44,6 @@ function App () {
     </>;
 }
 
-ReactDOM.render(<App />, document.querySelector("#app-root"));
+// ReactDOM.render(<App />, document.querySelector("#app-root"));
+const root = ReactDOM.createRoot(document.querySelector("#app-root")!);
+root.render(<App />);

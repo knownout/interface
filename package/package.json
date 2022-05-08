@@ -1,6 +1,6 @@
 {
     "name": "@knownout/interface",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "author": "Alexandr <re-knownout> knownout@hotmail.com",
     "license": "AGPL-3.0",
     "description": "React components library",
@@ -28,7 +28,7 @@
     "homepage": "https://github.com/re-knownout/interface#readme",
     "dependencies": {
         "@knownout/lib": "^0.0.8",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "react": "^18.1.0",
+        "react-dom": "^18.1.0"
     }
 }
