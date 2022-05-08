@@ -24,7 +24,7 @@ interface IPopupProps
     setPopupState: SetterOrUpdater<IPopupState>;
 
     // Custom mouse click event
-    onClick (target: HTMLDivElement, root: boolean, event: React.MouseEvent<HTMLDivElement>): void;
+    onClick? (target: HTMLDivElement, root: boolean, event: React.MouseEvent<HTMLDivElement>): void;
 }
 
 export interface IPopupState
@@ -35,12 +35,6 @@ export interface IPopupState
     // Popup component content
     content?: JSX.Element;
 }
-
-/** Popup component state */
-// export const popupComponentState = atom<IPopupState>({
-//     key: "popup-component-state",
-//     default: { display: false }
-// });
 
 /**
  * A custom hook to facilitate popup state changes
