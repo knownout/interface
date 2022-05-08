@@ -91,7 +91,7 @@ export default memo(forwardRef((props: IButtonProps, ref: React.ForwardedRef<HTM
         });
     }, [ onClick, buttonDisabled, onAsyncCallback, asyncExceptionHandler ]);
 
-    const buttonClassName = kwtClassNames("button", className, { loading, disabled: buttonDisabled });
+    const buttonClassName = kwtClassNames("button", className, { loading, disabled: buttonDisabled, link: href });
 
     return <button className={ buttonClassName } { ...nativeProps } onClick={ onComponentClick } ref={ ref }>
         { icon && <div className="icon-holder" children={ icon } /> }
