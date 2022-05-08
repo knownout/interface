@@ -1,19 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-import "./styles.scss";
+import { Accordion, AccordionItem } from "../package/components/Accordion";
 
 import Button from "../package/components/Button";
-import Input from "../package/components/Input";
 import Checkbox from "../package/components/Checkbox";
-import { RadioButton, RadioGroup } from "../package/components/RadioGroup";
-import { Accordion, AccordionItem } from "../package/components/Accordion";
 import { Dropdown, DropdownItem } from "../package/components/Dropdown";
+import Input from "../package/components/Input";
+import { RadioButton, RadioGroup } from "../package/components/RadioGroup";
+
+import "./styles.scss";
 
 function App () {
     return <>
         <h1>React components library @knownout/interface</h1>
+
         <Button>Hello world</Button>
+        <Button href="#">Link button</Button>
+
         <Input placeholder="Hello world" />
         <Checkbox customStatesList={ [ "first", "second", null ] }>
             { checked => {

@@ -4,9 +4,9 @@
  * https://github.com/re-knownout/lib
  */
 
+import { limitNumber } from "@knownout/lib";
 import React, { forwardRef, memo, useCallback, useState } from "react";
 import { ICommonProps, kwtClassNames } from "./utils";
-import { limitNumber } from "@knownout/lib";
 
 interface IButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick">, ICommonProps
 {
@@ -19,6 +19,9 @@ interface IButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement
 
     // Disable button while loading
     disableOnLoading?: boolean;
+
+    // Add link to a button
+    href?: string;
 
     ref?: React.LegacyRef<HTMLButtonElement>;
 
@@ -49,7 +52,7 @@ export default memo(forwardRef((props: IButtonProps, ref: React.ForwardedRef<HTM
 
     // Separate custom properties from native.
     const {
-        className, children, icon, disabled, minLoadingTime, disableOnLoading,
+        className, children, icon, disabled, minLoadingTime, disableOnLoading, href,
         onClick, onAsyncException, onAsyncCallback,
         ...nativeProps
     } = props;
@@ -89,8 +92,10 @@ export default memo(forwardRef((props: IButtonProps, ref: React.ForwardedRef<HTM
     }, [ onClick, buttonDisabled, onAsyncCallback, asyncExceptionHandler ]);
 
     const buttonClassName = kwtClassNames("button", className, { loading, disabled: buttonDisabled });
+
     return <button className={ buttonClassName } { ...nativeProps } onClick={ onComponentClick } ref={ ref }>
         { icon && <div className="icon-holder" children={ icon } /> }
-        <div className="button-child" children={ children } />
+        { Boolean(href) ? <a className="button-child" children={ children } href={ href } />
+            : <div className="button-child" children={ children } /> }
     </button>;
 }));
