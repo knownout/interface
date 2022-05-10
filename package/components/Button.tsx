@@ -87,7 +87,7 @@ export default memo(forwardRef((props: IButtonProps, ref: React.ForwardedRef<HTM
             const processTimeLeft = (minLoadingTime || 0) - (Date.now() - loadingStartTime);
 
             // Wait at least (minLoadingTime)ms.
-            setTimeout(() => setLoading(false), limitNumber(processTimeLeft, { bottom: 0 }));
+            setTimeout(() => setLoading(false), limitNumber(processTimeLeft, null, 0));
         });
     }, [ onClick, buttonDisabled, onAsyncCallback, asyncExceptionHandler ]);
 
