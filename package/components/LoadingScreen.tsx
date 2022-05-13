@@ -48,7 +48,7 @@ export function useLoadingState (state: ILoadingScreenState, setState: SetterOrU
             console.warn(`Loading bus already has ${ key } key, check your component`);
 
         loadingBus.add(key);
-        if (loadingBus.size > 0 && !state.display) setState({ display: true, title });
+        if (loadingBus.size > 0) setState({ display: true, title });
     };
 
     /**
