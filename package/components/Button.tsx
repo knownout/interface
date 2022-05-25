@@ -94,8 +94,7 @@ export default memo(forwardRef((props: IButtonProps, ref: React.ForwardedRef<HTM
     const buttonClassName = kwtClassNames("button", className, { loading, disabled: buttonDisabled, link: href });
 
     return <button className={ buttonClassName } { ...nativeProps } onClick={ onComponentClick } ref={ ref }>
-        { icon && <div className="icon-holder" children={ icon } /> }
-        { Boolean(href) ? <a className="button-child" children={ children } href={ href } />
-            : <div className="button-child" children={ children } /> }
+        { Boolean(href) ? <a className="button-child" href={ href }>{ icon }{ children }</a>
+            : <div className="button-child">{ icon }{ children }</div> }
     </button>;
 }));
